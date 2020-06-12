@@ -1,0 +1,20 @@
+{
+  "name": "use-form-control",
+  "version": "1.0.0",
+  "description": "React hook for controlling and validating inputs.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hkh12/use-form-control.git"
+  },
+  "keywords": ["react", "hook", "form"],
+  "author": "Hosein Khansari <hrk.x11@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hkh12/use-form-control/issues"
+  },
+  "homepage": "https://github.com/hkh12/use-form-control#readme"
+}
