@@ -35,14 +35,14 @@ test('does some basic validations', () => {
   expect(input.classList.contains('error')).toBe(false);
   expect(span.textContent).toBe('hi!');
 
-  fireEvent.change(input, { target: { value: 'hiii!' } });
+  fireEvent.input(input, { target: { value: 'hiii!' } });
   expect(span.textContent).toBe('hiii!');
 
-  fireEvent.change(input, { target: { value: 'hello' } });
+  fireEvent.input(input, { target: { value: 'hello' } });
   expect(span.textContent).toBe('hello');
   expect(input.classList.contains('error')).toBe(true);
 
-  fireEvent.change(input, { target: { value: 'foo!' } });
+  fireEvent.input(input, { target: { value: 'foo!' } });
   expect(span.textContent).toBe('foo!');
   expect(input.classList.contains('error')).toBe(false);
 });
@@ -62,13 +62,13 @@ test('handles blur event', () => {
 
 test('handles additional errors', () => {
   const { input, additionalErrorSpan, submitButton } = setup();
-  fireEvent.change(input, { target: { value: 'yo' } });
+  fireEvent.input(input, { target: { value: 'yo' } });
   // The input is surely invalid at this point.
   fireEvent.click(submitButton);
   expect(additionalErrorSpan.textContent.length > 0).toBe(true);
   expect(input.classList.contains('error')).toBe(true);
   // So, Let's fix the typo:
-  fireEvent.change(input, { target: { value: `${input.value}!` } });
+  fireEvent.input(input, { target: { value: `${input.value}!` } });
   expect(additionalErrorSpan.textContent.length).toBe(0);
   expect(input.classList.contains('error')).toBe(false);
 });

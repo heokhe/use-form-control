@@ -15,7 +15,7 @@ export default function useFormControl(validator) {
   // Or an additional error occured.
   const [hasBeenTouched, setHasBeenTouched] = useState(false);
 
-  const handleChange = event => {
+  const handleInput = event => {
     setHasBeenTouched(true);
     setIsValid(validate(event.target.value, validatorRef.current));
     setAdditionalError('');
@@ -31,10 +31,10 @@ export default function useFormControl(validator) {
     const node = ref.current;
     setIsValid(validate(node.value, validatorRef.current));
     node.addEventListener('blur', handleBlur);
-    node.addEventListener('change', handleChange);
+    node.addEventListener('input', handleInput);
     return () => {
       node.removeEventListener('blur', handleBlur);
-      node.removeEventListener('change', handleChange);
+      node.removeEventListener('input', handleInput);
     };
   }, [ref.current]);
 
