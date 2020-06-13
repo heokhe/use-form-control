@@ -21,11 +21,12 @@ And returns two things: a ref, and a object containing multiple things:
 You should attach the ref to your form control, and you're good to go.
 
 ## Example
+A simple example:
 ```js
 import useFormControl from 'use-form-control';
 
 function CoolTextFieldForEmail(props) {
-  const [ref, { isValid }] = useFormControl(/^[a-z]+@[a-z]+\.[a-z]$/i);
-  return <input type="email" ref={ref} className={isValid ? 'valid' : ''} />
+  const [ref, { hasError }] = useFormControl(/^[a-z]+@[a-z]+\.[a-z]$/i);
+  return <input type="email" ref={ref} className={hasError ? 'error' : ''} />
 }
 ```
