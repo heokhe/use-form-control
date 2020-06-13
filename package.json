@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "module": "dist/index.m.js",
   "source": "src/index.js",
+  "typings": "typings",
   "scripts": {
     "build": "microbundle build -f modern,umd",
     "test": "jest --coverage"
