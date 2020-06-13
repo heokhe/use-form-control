@@ -24,6 +24,7 @@ export default function useFormControl(regex) {
     setHasBeenTouched(false);
     setHasBeenFocused(true);
   };
+  // eslint-disable-next-line consistent-return
   useEffect(() => {
     const node = ref.current;
     if (node) {

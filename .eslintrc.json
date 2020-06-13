@@ -1,6 +1,15 @@
 {
+  "root": true,
   "extends": ["plugin:react/recommended", "@hkh12"],
   "env": {
     "browser": true
-  }
+  },
+  "overrides": [
+    {
+      "files": "tests/*",
+      "env": {
+        "jest": true
+      }
+    }
+  ]
 }
