@@ -6,12 +6,12 @@ afterEach(cleanup);
 
 function TestInput({ defaultValue = '' }) {
   const [ref, {
-    value, error, focus, additionalError, setAdditionalError
+    value, hasError, focus, additionalError, setAdditionalError
   }] = useFormControl(/^[a-z]+!$/i);
   // think of this function as the result of a "server-side validation"
   const submit = () => setAdditionalError('Invalid name');
   return <>
-    <input ref={ref} className={error ? 'error' : ''} defaultValue={defaultValue} />
+    <input ref={ref} className={hasError ? 'error' : ''} defaultValue={defaultValue} />
     <span>{value}</span>
     <span>{additionalError}</span>
     <button onClick={focus}>Focus</button>
@@ -34,6 +34,9 @@ test('does some basic validations', () => {
 
   expect(input.classList.contains('error')).toBe(false);
   expect(span.textContent).toBe('hi!');
+
+  fireEvent.change(input, { target: { value: 'hiii!' } });
+  expect(span.textContent).toBe('hiii!');
 
   fireEvent.change(input, { target: { value: 'hello' } });
   expect(span.textContent).toBe('hello');

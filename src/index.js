@@ -1,14 +1,5 @@
 import { useRef, useEffect, useState } from 'react';
 
-/**
- * @param {RegExp} regex RegExp to check whether the value is valid or not.
- * @returns {[import('react').Ref<any>, {
-     value: string,
-     isValid: boolean,
-     error: boolean,
-     focus(): void
- * }]}
- */
 export default function useFormControl(regex) {
   const ref = useRef(null);
   const [isValid, setIsValid] = useState(false);
@@ -43,7 +34,7 @@ export default function useFormControl(regex) {
 
   return [ref, {
     isValid,
-    error: !!additionalError || ((hasBeenFocused || hasBeenTouched) && !isValid),
+    hasError: !!additionalError || ((hasBeenFocused || hasBeenTouched) && !isValid),
     additionalError,
     setAdditionalError,
     value: ref.current && ref.current.value,
