@@ -1,6 +1,8 @@
 import { MutableRefObject } from 'react';
 
-declare function useFormControl<T>(regex: RegExp): [MutableRefObject<T>, {
+declare type Validator = RegExp | ((value: string) => boolean);
+
+declare function useFormControl<T>(regex?: Validator): [MutableRefObject<T>, {
   isValid: boolean;
   hasError: boolean;
   additionalError: string;

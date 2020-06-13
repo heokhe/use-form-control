@@ -1,6 +1,12 @@
 import { useRef, useEffect, useState } from 'react';
+import validate from './validate';
 
-export default function useFormControl(regex) {
+export default function useFormControl(validator) {
+  const validatorRef = useRef();
+  useEffect(() => {
+    validatorRef.current = validator;
+  }, []);
+
   const ref = useRef(null);
   const [isValid, setIsValid] = useState(false);
   const [hasBeenFocused, setHasBeenFocused] = useState(false);
@@ -11,7 +17,7 @@ export default function useFormControl(regex) {
 
   const handleChange = event => {
     setHasBeenTouched(true);
-    setIsValid(regex.test(event.target.value));
+    setIsValid(validate(event.target.value, validatorRef.current));
     setAdditionalError('');
   };
 
@@ -23,7 +29,7 @@ export default function useFormControl(regex) {
   // eslint-disable-next-line consistent-return
   useEffect(() => {
     const node = ref.current;
-    setIsValid(regex.test(node.value));
+    setIsValid(validate(node.value, validatorRef.current));
     node.addEventListener('blur', handleBlur);
     node.addEventListener('change', handleChange);
     return () => {
