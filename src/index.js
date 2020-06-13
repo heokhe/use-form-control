@@ -16,7 +16,7 @@ export default function useFormControl(regex) {
   const [hasBeenTouched, setHasBeenTouched] = useState(false);
   const [additionalError, setAdditionalError] = useState('');
   const handleChange = event => {
-    if (!hasBeenTouched) setHasBeenTouched(true);
+    setHasBeenTouched(true);
     setIsValid(regex.test(event.target.value));
     setAdditionalError('');
   };
@@ -27,15 +27,13 @@ export default function useFormControl(regex) {
   // eslint-disable-next-line consistent-return
   useEffect(() => {
     const node = ref.current;
-    if (node) {
-      setIsValid(regex.test(node.value));
-      node.addEventListener('blur', handleBlur);
-      node.addEventListener('change', handleChange);
-      return () => {
-        node.removeEventListener('blur', handleBlur);
-        node.removeEventListener('change', handleChange);
-      };
-    }
+    setIsValid(regex.test(node.value));
+    node.addEventListener('blur', handleBlur);
+    node.addEventListener('change', handleChange);
+    return () => {
+      node.removeEventListener('blur', handleBlur);
+      node.removeEventListener('change', handleChange);
+    };
   }, [ref.current]);
   return [ref, {
     isValid,
@@ -47,7 +45,7 @@ export default function useFormControl(regex) {
       return ref.current && ref.current.value;
     },
     focus() {
-      if (ref.current) ref.current.focus();
+      ref.current.focus();
     }
   }];
 }
