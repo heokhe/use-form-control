@@ -2,19 +2,38 @@
   "name": "use-form-control",
   "version": "1.0.0",
   "description": "React hook for controlling and validating inputs.",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.m.js",
+  "source": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "microbundle build -f modern,umd",
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hkh12/use-form-control.git"
   },
-  "keywords": ["react", "hook", "form"],
+  "keywords": [
+    "react",
+    "hook",
+    "form"
+  ],
   "author": "Hosein Khansari <hrk.x11@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/hkh12/use-form-control/issues"
   },
-  "homepage": "https://github.com/hkh12/use-form-control#readme"
+  "homepage": "https://github.com/hkh12/use-form-control#readme",
+  "devDependencies": {
+    "@babel/preset-env": "^7.10.2",
+    "@babel/preset-react": "^7.10.1",
+    "@testing-library/react": "^10.2.1",
+    "jest": "^26.0.1",
+    "microbundle": "^0.12.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0"
+  }
 }
