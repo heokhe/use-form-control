@@ -4,11 +4,15 @@
 React hook for controlling and validating inputs.
 
 ## Usage
-The hook takes a regular expression and returns two things: a ref, and a object containing multiple things:
+The hook takes a "validator":
+```ts
+type Validator = RegExp | ((value: string) => boolean);
+```
+And returns two things: a ref, and a object containing multiple things:
 | name | type | description
 | --- | --- | ---
 | value | `string` | The value of the input.
-| isValid | `boolean` | True if the value matches the given regex.
+| isValid | `boolean` | True if the value matches the given validator.
 | hasError | `boolean` | True if there's an error.
 | additionalError | `string?` | Any external error, such as the result of a server-side validation. You can display this string as a message near your form control.
 | setAdditionalError | `(error: string) => void` | Sets an `additionalError`.
