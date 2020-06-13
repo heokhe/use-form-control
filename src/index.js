@@ -27,6 +27,7 @@ export default function useFormControl(regex) {
   useEffect(() => {
     const node = ref.current;
     if (node) {
+      setIsValid(regex.test(node.value));
       node.addEventListener('blur', handleBlur);
       node.addEventListener('change', handleChange);
       return () => {
@@ -34,7 +35,6 @@ export default function useFormControl(regex) {
         node.removeEventListener('change', handleChange);
       };
     }
-    return () => {};
   }, [ref.current]);
   return [ref, {
     isValid,
