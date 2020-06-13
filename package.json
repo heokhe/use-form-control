@@ -2,7 +2,7 @@
   "name": "use-form-control",
   "version": "1.0.0",
   "description": "React hook for controlling and validating inputs.",
-  "main": "dist/index.js",
+  "main": "dist/index.umd.js",
   "module": "dist/index.m.js",
   "source": "src/index.js",
   "typings": "typings",
