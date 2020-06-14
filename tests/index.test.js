@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { render, fireEvent, cleanup } from '@testing-library/react';
 import useFormControl from '../src';
 
 afterEach(cleanup);
 
 function TestInput({ defaultValue = '' }) {
+  const [regex, setRegex] = useState(/^[a-z]+!$/i);
   const [ref, {
     value, hasError, focus, additionalError, setAdditionalError
-  }] = useFormControl(/^[a-z]+!$/i);
+  }] = useFormControl(regex);
+  useEffect(() => {
+    // But it stays the same!
+    setRegex(!hasError ? /^[a-z]+!$/i : /^!$/);
+  }, [hasError]);
+
   // think of this function as the result of a "server-side validation"
   const submit = () => setAdditionalError('Invalid name');
   return <>

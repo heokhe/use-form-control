@@ -2,11 +2,6 @@ import { useRef, useEffect, useState } from 'react';
 import validate from './validate';
 
 export default function useFormControl(validator) {
-  const validatorRef = useRef();
-  useEffect(() => {
-    validatorRef.current = validator;
-  }, []);
-
   const ref = useRef(null);
   const [isValid, setIsValid] = useState(false);
   const [hasBeenFocused, setHasBeenFocused] = useState(false);
@@ -17,7 +12,7 @@ export default function useFormControl(validator) {
 
   const handleInput = event => {
     setHasBeenTouched(true);
-    setIsValid(validate(event.target.value, validatorRef.current));
+    setIsValid(validate(event.target.value, validator));
     setAdditionalError('');
   };
 
@@ -26,17 +21,16 @@ export default function useFormControl(validator) {
     setHasBeenFocused(true);
   };
 
-  // eslint-disable-next-line consistent-return
   useEffect(() => {
     const node = ref.current;
-    setIsValid(validate(node.value, validatorRef.current));
+    setIsValid(validate(node.value, validator));
     node.addEventListener('blur', handleBlur);
     node.addEventListener('input', handleInput);
     return () => {
       node.removeEventListener('blur', handleBlur);
       node.removeEventListener('input', handleInput);
     };
-  }, [ref.current]);
+  }, []);
 
   return [ref, {
     isValid,
