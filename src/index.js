@@ -38,6 +38,7 @@ export default function useFormControl(validator) {
     additionalError,
     setAdditionalError,
     value: ref.current && ref.current.value,
+    input: ref.current,
     focus: () => ref.current.focus()
   }];
 }

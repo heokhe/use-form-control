@@ -8,6 +8,7 @@ declare function useFormControl<T>(regex?: Validator): [MutableRefObject<T>, {
   additionalError: string;
   setAdditionalError: React.Dispatch<React.SetStateAction<string>>;
   value: string;
+  input: T;
   focus: () => void;
 }]
 
