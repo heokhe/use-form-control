@@ -1,5 +1,5 @@
 # use-form-control
-[![Package size](https://badgen.net/bundlephobia/min/use-form-control)](https://badgen.net/bundlephobia/min/use-form-control)
+[![Minzipped size](https://badgen.net/bundlephobia/minzip/use-form-control)](https://bundlephobia.com/result?p=use-form-control)
 
 React hook for controlling and validating inputs.
 
@@ -21,12 +21,4 @@ And returns two things: a ref, and a object containing multiple things:
 You should attach the ref to your form control, and you're good to go.
 
 ## Example
-A simple example:
-```js
-import useFormControl from 'use-form-control';
-
-function CoolTextFieldForEmail(props) {
-  const [ref, { hasError }] = useFormControl(/^[a-z]+@[a-z]+\.[a-z]$/i);
-  return <input type="email" ref={ref} className={hasError ? 'error' : ''} />
-}
-```
+See [This CodeSandbox](https://codesandbox.io/s/use-form-control-demo-fh62y).
