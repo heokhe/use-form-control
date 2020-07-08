@@ -66,6 +66,15 @@ test('handles blur event', () => {
   expect(input.classList.contains('error')).toBe(true);
 });
 
+test('handles change event', () => {
+  const { input } = setup();
+  input.focus();
+  fireEvent.blur(input);
+  expect(input.classList.contains('error')).toBe(true);
+  fireEvent.change(input, { target: { value: 'yo!' } });
+  expect(input.classList.contains('error')).toBe(false);
+});
+
 test('handles additional errors', () => {
   const { input, additionalErrorSpan, submitButton } = setup();
   fireEvent.input(input, { target: { value: 'yo' } });
